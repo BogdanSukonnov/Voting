@@ -1,12 +1,18 @@
 package com.bogdansukonnov.voting.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "candidates")
+@Entity
 public class Candidate {
 	
+	public Candidate() {
+		super();
+	}
+
 	@Id
 	@Column(name = "id")
 	private long id;
