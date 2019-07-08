@@ -15,13 +15,13 @@ public class Candidate {
 
 	@Id
 	@Column(name = "id")
-	private long id;
+	private int id;
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -35,5 +35,16 @@ public class Candidate {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Column(name = "numderOfVotes")
+	private Integer numberOfVotes;
 
+	public Integer getNumberOfVotes() {
+		return numberOfVotes;
+	}
+
+	public void setNumberOfVotes(Integer numberOfVotes) {
+		this.numberOfVotes = numberOfVotes;
+	}
+	
 }

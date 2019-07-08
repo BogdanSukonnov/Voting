@@ -41,5 +41,16 @@ public class Citizen {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Column(name = "hasVoted")
+	private Boolean hasVoted;
+
+	public Boolean getHasVoted() {
+		return hasVoted;
+	}
+
+	public void setHasVoted(Boolean hasVoted) {
+		this.hasVoted = hasVoted;
+	}
 
 }
