@@ -9,13 +9,27 @@ import javax.persistence.Table;
 @Entity
 public class Candidate {
 	
+	@Id
+	@Column(name = "id")
+	private int id;
+	
+	@Column(name = "candidate_name")
+	private String name;
+	
+	@Column(name = "numderOfVotes")
+	private Integer numberOfVotes;
+	
+	/*
+	 * Constructors
+	 */
 	public Candidate() {
 		super();
 	}
 
-	@Id
-	@Column(name = "id")
-	private int id;
+	
+	/*
+	 * Getters and setters
+	 */
 
 	public int getId() {
 		return id;
@@ -23,10 +37,7 @@ public class Candidate {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	@Column(name = "candidate_name")
-	private String name;
+	}	
 
 	public String getName() {
 		return name;
@@ -34,10 +45,7 @@ public class Candidate {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	@Column(name = "numderOfVotes")
-	private Integer numberOfVotes;
+	}	
 
 	public Integer getNumberOfVotes() {
 		return numberOfVotes;

@@ -18,8 +18,8 @@ import com.bogdansukonnov.voting.repositories.CitizenRepo;
 
 @Controller
 public class VotingController {
-	
-	public final Logger logger = Logger.getLogger(VotingController.class);
+		
+	final Logger logger = Logger.getLogger(VotingController.class);
 	
 	@Autowired
 	CitizenRepo citizenRepo;
@@ -27,47 +27,52 @@ public class VotingController {
 	@Autowired
 	CandidateRepo candidateRepo;
 	
+	
 	@RequestMapping("/")
-	public String goToVote() {
-		logger.info("Start log");
-		return "vote.html";
+	public String getAutorisationPage() {		
+		return "autorisation.html";		
 	}
 	
 	@RequestMapping("/doLogin")
-	public String doLogin(@RequestParam String name, Model model, HttpSession session) {
-				
-		Citizen citizen = citizenRepo.findByName(name);
-		
-		if (citizen == null) {
+	public String doLogin(@RequestParam String name, Model model, HttpSession session) {				
+		/*
+		 * Citizens can have only unique names 
+		 */
+		Citizen citizen = citizenRepo.findByName(name);		
+		if (citizen == null) {			
+			//new name, create Citizen with name, hasVoted = false
+			logger.info("New Citizen with name " + name);
 			citizen = new Citizen(name);
+			//save Citizen to database
 			citizenRepo.save(citizen);
 		}			
 		
 		if (citizen.getHasVoted()) {
+			//Citizen can't vote more than once 
 			return "alreadyVoted.html";
-		}
-		else {
-			List<Candidate> candidates = candidateRepo.findAll();
-			model.addAttribute("candidates", candidates);			
+		} else {
+			//Citizen can vote
+			//inject citizen to session
 			session.setAttribute("citizen", citizen);
+			//get candidates
+			List<Candidate> candidates = candidateRepo.findAll();
+			//inject candidates to model
+			model.addAttribute("candidates", candidates);			
 			return "performVote.html";
-		}
-		
+		}		
 	}
 	
 	@RequestMapping("/voteFor")
-	public String voteFor(@RequestParam int id, HttpSession session) {
-		
+	public String voteFor(@RequestParam int id, HttpSession session) {		
+		//Increase candidate's votes
 		Candidate candidate = candidateRepo.findById(id);
 		candidate.setNumberOfVotes(candidate.getNumberOfVotes() + 1);
 		candidateRepo.save(candidate);
-		
+		//Mark Citizen's hasVoted field		
 		Citizen citizen = (Citizen) session.getAttribute("citizen");
 		citizen.setHasVoted(true);
-		citizenRepo.save(citizen);
-		
-		return "voteAccepted.html";
-		
+		citizenRepo.save(citizen);		
+		return "voteAccepted.html";		
 	}
 
 }
