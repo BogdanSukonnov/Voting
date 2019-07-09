@@ -36,22 +36,19 @@ public class VotingController {
 	@RequestMapping("/doLogin")
 	public String doLogin(@RequestParam String name, Model model, HttpSession session) {
 				
-		Boolean citizenHasVoted = false;
-		
 		Citizen citizen = citizenRepo.findByName(name);
-		if (citizen != null) {		
-			citizenHasVoted = citizen.getHasVoted();			
-		}
-		if (citizenHasVoted) {
+		
+		if (citizen == null) {
+			citizen = new Citizen(name);
+			citizenRepo.save(citizen);
+		}			
+		
+		if (citizen.getHasVoted()) {
 			return "alreadyVoted.html";
 		}
 		else {
 			List<Candidate> candidates = candidateRepo.findAll();
-			model.addAttribute("candidates", candidates);
-			if (citizen == null) {
-				citizen = new Citizen();
-				citizen.setName(name);				
-			}
+			model.addAttribute("candidates", candidates);			
 			session.setAttribute("citizen", citizen);
 			return "performVote.html";
 		}

@@ -2,6 +2,7 @@ package com.bogdansukonnov.voting.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,14 +14,15 @@ public class Citizen {
 		super();
 	}
 
-	public Citizen(long id, String name) {
+	public Citizen(String name) {
 		super();
-		this.id = id;
 		this.name = name;
+		this.hasVoted = false;
 	}
 
 	@Id
-	@Column(name = "id")
+	@GeneratedValue
+	@Column(name = "id", updatable = false, nullable = false)
 	private long id;
 
 	public long getId() {
