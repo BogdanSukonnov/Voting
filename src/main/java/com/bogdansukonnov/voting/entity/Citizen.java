@@ -21,9 +21,6 @@ public class Citizen {
 	@Column(name = "hasVoted")
 	private Boolean hasVoted;
 	
-	/*
-	 * Constructors
-	 */
 	public Citizen() {
 		super();
 	}	
@@ -34,11 +31,6 @@ public class Citizen {
 		this.hasVoted = false;
 	}
 
-	
-	/*
-	 * Getters and setters
-	 */	
-	
 	public long getId() {
 		return id;
 	}

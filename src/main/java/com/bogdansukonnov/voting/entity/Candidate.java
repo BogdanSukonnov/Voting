@@ -16,20 +16,12 @@ public class Candidate {
 	@Column(name = "candidate_name")
 	private String name;
 	
-	@Column(name = "numderOfVotes")
+	@Column(name = "numberOfVotes")
 	private Integer numberOfVotes;
 	
-	/*
-	 * Constructors
-	 */
 	public Candidate() {
 		super();
 	}
-
-	
-	/*
-	 * Getters and setters
-	 */
 
 	public int getId() {
 		return id;
