@@ -1,4 +1,5 @@
 # Voting
+[![Build Status](https://travis-ci.org/BogdanSukonnov/Voting.svg?branch=master)](https://travis-ci.org/BogdanSukonnov/Voting)
 
 Training project with Maven, Spring Boot, Hibernate, MySQL, Thymeleaf.
 
