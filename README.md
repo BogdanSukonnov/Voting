@@ -1,5 +1,5 @@
 # Voting
-[![Build Status](https://travis-ci.org/BogdanSukonnov/Voting.svg?branch=master)](https://travis-ci.org/BogdanSukonnov/Voting)
+[![codecov](https://codecov.io/gh/BogdanSukonnov/Voting/branch/master/graph/badge.svg)](https://codecov.io/gh/BogdanSukonnov/Voting)
 
 Training project with Maven, Spring Boot, Hibernate, MySQL, Thymeleaf.
 
